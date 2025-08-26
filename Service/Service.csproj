@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Identity\Calculator_UI.csproj" />
+    <None Include="Identity\Calculator_UI.csproj.user" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Identity\obj\Debug\net9.0\staticwebassets\" />
+  </ItemGroup>
+
 </Project>
