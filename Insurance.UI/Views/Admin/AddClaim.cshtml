@@ -1,0 +1,31 @@
+﻿@{ 
+
+    ViewData["Title"] = "Add Claim"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <h2>Add Claim</h2> 
+
+        <form> 
+
+            <div class="mb-3"><label>Policy No</label><input class="form-control" /></div> 
+
+            <div class="mb-3"><label>Claim Amount</label><input type="number" class="form-control" /></div> 
+
+            <div class="mb-3"><label>Status</label><select class="form-select"><option>Pending</option><option>Approved</option><option>Rejected</option></select></div> 
+
+            <button class="btn btn-success">Save</button> 
+
+        </form> 
+
+    </div> 
+
+</div> 

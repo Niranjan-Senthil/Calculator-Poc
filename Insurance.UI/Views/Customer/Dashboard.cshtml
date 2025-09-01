@@ -1,0 +1,56 @@
+﻿@{ 
+
+    ViewData["Title"] = "Customer Dashboard"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_CustomerSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <div class="row g-3">
+  <div class="col-md-8">
+    <div class="card-flat">
+      <h5>Welcome, Rahul 👋</h5>
+      <p class="mb-0">Quick overview of your active policies and latest claim.</p>
+      <hr />
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card-flat mb-2">
+            <h6>Active Policy</h6>
+            <p class="mb-0">KA01AB1234 — Comprehensive</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card-flat mb-2">
+            <h6>Policy Renew</h6>
+            <p class="mb-0">Policy expiring 2025-09-12</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-flat mt-3">
+        <h6>Latest Claim</h6>
+        <p>Claim ID: CLM021 — Status: Pending</p>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="col-md-4">
+    <div class="card-flat text-centre">
+      <h3>125</h3>
+      <div>Total Policies</div>
+    </div>
+    <div class="card-flat text-centre mt-3">
+      <h3>24</h3>
+      <div>Pending Claims</div>
+    </div>
+  </div>
+</div>
+
+    </div> 
+
+</div> 

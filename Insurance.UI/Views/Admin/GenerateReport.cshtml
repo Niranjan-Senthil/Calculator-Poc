@@ -1,0 +1,41 @@
+﻿@{ 
+
+    ViewData["Title"] = "Generate Report"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+            <div class="card-flat mx-auto" style="max-width:640px">
+  <h4>Generate Report</h4>
+  <form method="post" >
+    <div class="mb-3"><label class="form-label">Report Type</label>
+         <select class="form-select"> 
+
+                    <option>Customer Report</option> 
+
+                    <option>Policy Report</option> 
+
+                    <option>Claim Report</option> 
+
+                </select> 
+    <div class="row">
+      <div class="col-md-6 mb-3"><label class="form-label">Start Date</label><input class="form-control" type="date" name="startDate" /></div>
+      <div class="col-md-6 mb-3"><label class="form-label">End Date</label><input class="form-control" type="date" name="endDate" /></div>
+    </div>
+    <div class="mb-3"><label class="form-label">Policy Number</label><input class="form-control" name="policyNo" /></div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary">Generate</button>
+      <a class="btn btn-outline-secondary" href="/Admin/Reports">Cancel</a>
+    </div>
+  </form>
+</div>
+    </div> 
+
+</div> 

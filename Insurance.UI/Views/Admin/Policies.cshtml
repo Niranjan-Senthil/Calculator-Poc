@@ -1,0 +1,29 @@
+﻿@{ 
+
+    ViewData["Title"] = "Policies"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <h2>Policies</h2> 
+
+        <a class="btn btn-success mb-3" href="@Url.Action("AddPolicy","Admin")">Add Policy</a> 
+
+        <table class="table table-bordered"> 
+
+            <thead class="table-dark"><tr><th>ID</th><th>Policy Name</th><th>Duration</th></tr></thead> 
+
+            <tbody><tr><td>1</td><td>Car Insurance</td><td>1 Year</td></tr></tbody> 
+
+        </table> 
+
+    </div> 
+
+</div> 
