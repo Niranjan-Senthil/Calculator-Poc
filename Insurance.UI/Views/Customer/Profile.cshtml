@@ -1,0 +1,61 @@
+﻿@{ 
+
+    ViewData["Title"] = "Profile"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_CustomerSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <h2>Profile</h2> 
+
+      <div class="container mt-4">
+  <!-- Name Row -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-3">
+      <label for="name" class="form-label">Name:</label>
+    </div>
+    <div class="col-9">
+      <input type="text" class="form-control" id="name" placeholder="Enter your name">
+    </div>
+  </div>
+
+  <!-- Phone Number Row -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-3">
+      <label for="phone" class="form-label">Phone No:</label>
+    </div>
+    <div class="col-9">
+      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+    </div>
+  </div>
+
+  <!-- Email Row -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-3">
+      <label for="email" class="form-label">Email:</label>
+    </div>
+    <div class="col-9">
+      <input type="email" class="form-control" id="email" placeholder="Enter your email">
+    </div>
+  </div>
+
+  <!-- Address Row -->
+  <div class="row mb-3 align-items-center">
+    <div class="col-3">
+      <label for="address" class="form-label">Address:</label>
+    </div>
+    <div class="col-9">
+      <input type="text" class="form-control" id="address" placeholder="Enter your address">
+    </div>
+  </div>
+   <button class="btn btn-warning">Edit</button>
+</div>
+    </div> 
+   
+</div> 

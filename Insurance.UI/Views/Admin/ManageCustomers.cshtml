@@ -1,0 +1,32 @@
+﻿@{ 
+
+    ViewData["Title"] = "Manage Customers"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+        <h4>Customers Details</h4>
+       <div class="d-flex justify-content-between mb-3">
+  <div><input class="form-control" placeholder="Search customers" style="min-width:300px" /></div>
+  <div><a class="btn btn-primary" href="/Admin/AddCustomer">Add Customer</a></div>
+</div>
+ 
+<div class="card-flat">
+  <table class="table">
+    <thead><tr><th>CustomerID</th><th>Name</th><th>Email</th><th>Phone</th><th>Vehicles</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>C001</td><td>Rahul Sharma</td><td>rahul@example</td><td>1234567890</td><td>1</td><td><a class="btn btn-sm btn-outline-secondary" href="#">Edit</a></td></tr>
+      <tr><td>C002</td><td>Meera Singh</td><td>meera@example</td><td>0987654321</td><td>2</td><td><a class="btn btn-sm btn-outline-secondary" href="#">Edit</a></td></tr>
+    </tbody>
+  </table>
+</div>
+
+    </div> 
+
+</div> 

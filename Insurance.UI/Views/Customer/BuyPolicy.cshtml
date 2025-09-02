@@ -1,0 +1,28 @@
+﻿@{ 
+
+    ViewData["Title"] = "Buy Policy"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+<div class="row">
+    <div class="col-md-3">@Html.Partial("_CustomerSidebar")</div> 
+    <div class="col-md-9">
+<div class="card-flat mx-auto" style="max-width:720px">
+     
+  <h4>Buy Policy</h4>
+  <form method="post">
+    <div class="mb-3"><label class="form-label">Vehicle No</label><input class="form-control" name="vehicleNo" /></div>
+    <div class="mb-3"><label class="form-label">Vehicle Type</label><input class="form-control" name="vehicleType" /></div>
+    <div class="mb-3"><label class="form-label">Policy Type</label>
+      <select class="form-select" name="policyType"><option>Comprehensive</option><option>Third-Party</option></select>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3"><label class="form-label">Premium Amount</label><input class="form-control" name="premium" /></div>
+      <div class="col-md-6 mb-3"><label class="form-label">Duration (months)</label><input class="form-control" name="duration" /></div>
+    </div>
+    <button class="btn btn-primary">Buy</button>
+  </form>
+</div>
+</div>
+</div>

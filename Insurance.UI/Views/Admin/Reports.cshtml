@@ -1,0 +1,32 @@
+﻿@{ 
+
+    ViewData["Title"] = "Reports"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <div class="d-flex justify-content-between mb-3">
+  <input class="form-control" placeholder="Search..." style="min-width:320px" />
+  <a class="btn btn-primary" href="/Admin/GenerateReport">Generate Report</a>
+</div>
+ 
+<div class="card-flat">
+  <table class="table">
+    <thead><tr><th>Report Type</th><th>Date</th></tr></thead>
+    <tbody>
+      <tr><td>Claims Report</td><td>2024-04-26</td></tr>
+      <tr><td>Policy Report</td><td>2024-04-25</td></tr>
+    </tbody>
+  </table>
+</div>
+
+    </div> 
+
+</div> 

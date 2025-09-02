@@ -1,0 +1,31 @@
+﻿@{ 
+
+    ViewData["Title"] = "Add Policy"; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+
+} 
+
+<div class="row"> 
+
+    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
+
+    <div class="col-md-9"> 
+
+        <h2>Add Policy</h2> 
+
+        <form> 
+
+            <div class="mb-3"><label>Policy Name</label><input class="form-control" /></div> 
+
+            <div class="mb-3"><label>Duration</label><input class="form-control" /></div> 
+
+            <div class="mb-3"><label>Premium</label><input type="number" class="form-control" /></div> 
+
+            <button class="btn btn-success">Save</button> 
+
+        </form> 
+
+    </div> 
+
+</div> 
