@@ -1,14 +1,283 @@
-﻿@{ ViewData["Title"] = "Admin Register"; Layout = "~/Views/Shared/_Layout.cshtml"; }
-<div class="mx-auto" style="max-width:560px">
-  <div class="card-flat">
-    <h4>Create account</h4>
-    <form method="post" >
-      <div class="row">
-        <div class="col-md-6 mb-3"><label class="form-label">Username</label><input class="form-control" name="username" /></div>
-        <div class="col-md-6 mb-3"><label class="form-label">Email</label><input class="form-control" name="email" /></div>
-      </div>
-      <div class="mb-3"><label class="form-label">Password</label><input class="form-control" name="password" type="password" /></div>
-      <button class="btn btn-primary">Register</button>
-    </form>
-  </div>
+﻿@{
+    ViewData["Title"] = "PoliSure Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .account-card {
+        max-width: 560px;
+        margin: auto;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 3rem;
+    }
+
+    .form-section {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+        .form-section.active {
+            display: block;
+        }
+
+    .btn-toggle {
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-toggle:hover {
+            transform: translateY(-2px);
+        }
+
+    .password-requirements {
+        display: none;
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+
+        .password-requirements li {
+            color: #dc3545;
+            list-style-type: '× ';
+        }
+
+            .password-requirements li.valid {
+                color: #28a745;
+                list-style-type: '✓ ';
+            }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="container py-5">
+    <div class="account-card mt-5">
+        <h4 class="text-center mb-4">Create Your PoliSure Account</h4>
+
+        <div class="d-flex justify-content-center mb-4">
+            <button class="btn btn-outline-primary me-2 btn-toggle" id="signUpAdminBtn">Register as Admin</button>
+            <button class="btn btn-outline-success btn-toggle" id="signUpUserBtn">Register as User</button>
+        </div>
+
+        <!-- Admin registration form -->
+        <div id="adminRegistrationForm" class="form-section">
+            <h5 class="text-center mb-3">Admin Registration</h5>
+            <form id="adminForm" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Name<span class="text-danger">*</span></label>
+                    <input class="form-control" name="name" required />
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Username<span class="text-danger">*</span></label>
+                        <input class="form-control" name="username" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Employee Id<span class="text-danger">*</span></label>
+                        <input class="form-control" name="employeeId" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email<span class="text-danger">*</span></label>
+                        <input class="form-control" name="email" type="email" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Mobile<span class="text-danger">*</span></label>
+                        <input class="form-control" name="mobile" type="tel" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="password" id="adminPasswordInput" type="password" required />
+                    <div id="adminPasswordRequirements" class="password-requirements">
+                        <ul class="list-unstyled">
+                            <li id="adminLengthReq">8 characters minimum</li>
+                            <li id="adminUppercaseReq">1 uppercase letter</li>
+                            <li id="adminLowercaseReq">1 lowercase letter</li>
+                            <li id="adminNumberReq">1 number</li>
+                            <li id="adminSpecialCharReq">1 special character</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="confirmPassword" type="password" required />
+                </div>
+                <button class="btn btn-primary w-100 mt-2">Register</button>
+            </form>
+        </div>
+
+        <!-- User registration form -->
+        <div id="userRegistrationForm" class="form-section">
+            <h5 class="text-center mb-3">User Registration</h5>
+            <form id="userForm" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Name<span class="text-danger">*</span></label>
+                    <input class="form-control" name="name" required />
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Username<span class="text-danger">*</span></label>
+                        <input class="form-control" name="username" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email<span class="text-danger">*</span></label>
+                        <input class="form-control" name="email" type="email" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Mobile<span class="text-danger">*</span></label>
+                        <input class="form-control" name="mobile" type="tel" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+                        <input class="form-control" name="dob" type="date" required />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Vehicle Number<span class="text-danger">*</span></label>
+                    <input class="form-control" name="vehicleNo" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="password" id="userPasswordInput" type="password" required />
+                    <div id="userPasswordRequirements" class="password-requirements">
+                        <ul class="list-unstyled">
+                            <li id="userLengthReq">8 characters minimum</li>
+                            <li id="userUppercaseReq">1 uppercase letter</li>
+                            <li id="userLowercaseReq">1 lowercase letter</li>
+                            <li id="userNumberReq">1 number</li>
+                            <li id="userSpecialCharReq">1 special character</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="confirmPassword" type="password" required />
+                </div>
+                <button class="btn btn-primary w-100 mt-2">Register</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+<!-- Reusable Modal for Success Messages -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="statusModalBody"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const signUpAdminBtn = document.getElementById('signUpAdminBtn');
+        const signUpUserBtn = document.getElementById('signUpUserBtn');
+        const adminRegistrationForm = document.getElementById('adminRegistrationForm');
+        const userRegistrationForm = document.getElementById('userRegistrationForm');
+        const adminPasswordInput = document.getElementById('adminPasswordInput');
+        const adminPasswordRequirements = document.getElementById('adminPasswordRequirements');
+        const userPasswordInput = document.getElementById('userPasswordInput');
+        const userPasswordRequirements = document.getElementById('userPasswordRequirements');
+        const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
+        const statusModalLabel = document.getElementById('statusModalLabel');
+        const statusModalBody = document.getElementById('statusModalBody');
+        const adminForm = document.getElementById('adminForm');
+        const userForm = document.getElementById('userForm');
+
+        function hideAllForms() {
+            document.querySelectorAll('.form-section').forEach(form => {
+                form.classList.remove('active');
+            });
+        }
+
+        signUpAdminBtn.addEventListener('click', function() {
+            hideAllForms();
+            adminRegistrationForm.classList.add('active');
+        });
+
+        signUpUserBtn.addEventListener('click', function() {
+            hideAllForms();
+            userRegistrationForm.classList.add('active');
+        });
+
+        function validatePassword(passwordInput, requirementsList) {
+            const value = passwordInput.value;
+            const lengthReq = requirementsList.querySelector('[id$=lengthReq]');
+            const uppercaseReq = requirementsList.querySelector('[id$=uppercaseReq]');
+            const lowercaseReq = requirementsList.querySelector('[id$=lowercaseReq]');
+            const numberReq = requirementsList.querySelector('[id$=numberReq]');
+            const specialCharReq = requirementsList.querySelector('[id$=specialCharReq]');
+
+            value.length >= 8 ? lengthReq.classList.add('valid') : lengthReq.classList.remove('valid');
+            /[A-Z]/.test(value) ? uppercaseReq.classList.add('valid') : uppercaseReq.classList.remove('valid');
+            /[a-z]/.test(value) ? lowercaseReq.classList.add('valid') : lowercaseReq.classList.remove('valid');
+            /[0-9]/.test(value) ? numberReq.classList.add('valid') : numberReq.classList.remove('valid');
+            /[!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value) ? specialCharReq.classList.add('valid') : specialCharReq.classList.remove('valid');
+        }
+
+        adminPasswordInput.addEventListener('focus', function() {
+            adminPasswordRequirements.style.display = 'block';
+        });
+        adminPasswordInput.addEventListener('blur', function() {
+            if (this.value === '') {
+                adminPasswordRequirements.style.display = 'none';
+            }
+        });
+        adminPasswordInput.addEventListener('keyup', function() {
+            validatePassword(adminPasswordInput, adminPasswordRequirements);
+        });
+
+        userPasswordInput.addEventListener('focus', function() {
+            userPasswordRequirements.style.display = 'block';
+        });
+        userPasswordInput.addEventListener('blur', function() {
+            if (this.value === '') {
+                userPasswordRequirements.style.display = 'none';
+            }
+        });
+        userPasswordInput.addEventListener('keyup', function() {
+            validatePassword(userPasswordInput, userPasswordRequirements);
+        });
+
+        function handleRegistrationSuccess() {
+            statusModalLabel.textContent = 'Registration Successful!';
+            statusModalBody.textContent = 'Your account has been created successfully. You will now be redirected to the login page.';
+            statusModal.show();
+            setTimeout(function() {
+                // In a real application, you would handle the server-side registration
+                window.location.href = '@Url.Action("Login", "Home")';
+            }, 3000);
+        }
+
+        adminForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleRegistrationSuccess();
+        });
+
+        userForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleRegistrationSuccess();
+        });
+    });
+</script>

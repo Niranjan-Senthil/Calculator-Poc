@@ -1,40 +1,173 @@
-﻿@{ 
+﻿@{
+    ViewData["Title"] = "PoliSure Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    ViewData["Title"] = "Customer Login"; 
+<style>
+    /* New container to ensure background fills the viewport */
+    .login-bg-container {
+        width: 100%;
+        min-height: 100vh; /* Use min-height to ensure it covers the full viewport height */
+        background-color: #f0f4f8;
+        background-image: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+        display: flex;
+        align-items: center; /* Vertically center the card */
+        justify-content: center; /* Horizontally center the card */
+    }
 
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    .account-card {
+        max-width: 560px;
+        width: 100%;
+        background-color: #f9fafb;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 3rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
 
-} 
+    .form-section {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+    }
 
-<div class="row justify-content-center mt-5"> 
+        .form-section.active {
+            display: block;
+        }
 
-    <div class="col-md-4"> 
+    .btn-toggle {
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
 
-        <h3>Customer Login</h3> 
+        .btn-toggle:hover {
+            transform: translateY(-2px);
+        }
 
-        <form method="post"> 
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
 
-            <div class="mb-3"> 
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
 
-                <label>Email</label> 
+<div class="login-bg-container">
+    <div class="account-card">
+        <h4 class="text-center mb-4">PoliSure Account Sign In</h4>
 
-                <input class="form-control" type="email" required /> 
+        <div class="d-flex justify-content-center mb-4">
+            <button class="btn btn-outline-primary me-2 btn-toggle" id="signInAdminBtn">Sign In as Admin</button>
+            <button class="btn btn-outline-success btn-toggle" id="signInUserBtn">Sign In as User</button>
+        </div>
 
-            </div> 
+        <!-- Admin login form -->
+        <div id="adminLoginForm" class="form-section">
+            <h5 class="text-center mb-3">Admin Sign In</h5>
+            <form id="adminLogin" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Username/Email<span class="text-danger">*</span></label>
+                    <input class="form-control" name="usernameOrEmail" id="adminLoginUserEmail" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Employee Id<span class="text-danger">*</span></label>
+                    <input class="form-control" name="employeeId" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="password" type="password" required />
+                </div>
+                <button class="btn btn-primary w-100 mt-2">Sign In</button>
+            </form>
+        </div>
 
-            <div class="mb-3"> 
+        <!-- User login form -->
+        <div id="userLoginForm" class="form-section">
+            <h5 class="text-center mb-3">User Sign In</h5>
+            <form id="userLogin" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Username/Email<span class="text-danger">*</span></label>
+                    <input class="form-control" name="usernameOrEmail" id="userLoginUserEmail" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password<span class="text-danger">*</span></label>
+                    <input class="form-control" name="password" type="password" required />
+                </div>
+                <button class="btn btn-primary w-100 mt-2">Sign In</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-                <label>Password</label> 
+<!-- Reusable Modal for Success Messages -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="statusModalBody"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <input class="form-control" type="password" required /> 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const signInAdminBtn = document.getElementById('signInAdminBtn');
+        const signInUserBtn = document.getElementById('signInUserBtn');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const userLoginForm = document.getElementById('userLoginForm');
+        const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
+        const statusModalLabel = document.getElementById('statusModalLabel');
+        const statusModalBody = document.getElementById('statusModalBody');
+        const adminLoginFormElement = document.getElementById('adminLogin');
+        const userLoginFormElement = document.getElementById('userLogin');
 
-            </div> 
+        function hideAllForms() {
+            document.querySelectorAll('.form-section').forEach(form => {
+                form.classList.remove('active');
+            });
+        }
 
-            <button class="btn btn-primary w-100">Login</button> 
-            <a href="/Customer/Register">Create Account</a>
+        signInAdminBtn.addEventListener('click', function() {
+            hideAllForms();
+            adminLoginForm.classList.add('active');
+        });
 
-        </form> 
+        signInUserBtn.addEventListener('click', function() {
+            hideAllForms();
+            userLoginForm.classList.add('active');
+        });
 
-    </div> 
+        function handleLoginSuccess(username, role) {
+            const dashboardUrl = role === 'admin' ? '@Url.Action("Dashboard", "Admin")' : '@Url.Action("Dashboard", "Customer")';
+            statusModalLabel.textContent = 'Sign In Successful!';
+            statusModalBody.textContent = `Welcome ${username}! You will now be redirected to your dashboard.`;
+            statusModal.show();
+            setTimeout(function() {
+                window.location.href = dashboardUrl;
+            }, 3000);
+        }
 
-</div> 
+        adminLoginFormElement.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('adminLoginUserEmail').value;
+            // In a real application, you would perform backend validation and get the role
+            handleLoginSuccess(username, 'admin');
+        });
+
+        userLoginFormElement.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('userLoginUserEmail').value;
+            // In a real application, you would perform backend validation and get the role
+            handleLoginSuccess(username, 'user');
+        });
+    });
+</script>
