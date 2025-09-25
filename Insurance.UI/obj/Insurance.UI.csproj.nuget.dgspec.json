@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2438789\\source\\repos\\Insurance\\Insurance.UI\\Insurance.UI.csproj": {}
+    "C:\\Users\\2438801\\Downloads\\Project\\Calculator-Poc\\Insurance.UI\\Insurance.UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2438789\\source\\repos\\Insurance\\Insurance.UI\\Insurance.UI.csproj": {
+    "C:\\Users\\2438801\\Downloads\\Project\\Calculator-Poc\\Insurance.UI\\Insurance.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2438789\\source\\repos\\Insurance\\Insurance.UI\\Insurance.UI.csproj",
+        "projectUniqueName": "C:\\Users\\2438801\\Downloads\\Project\\Calculator-Poc\\Insurance.UI\\Insurance.UI.csproj",
         "projectName": "Insurance.UI",
-        "projectPath": "C:\\Users\\2438789\\source\\repos\\Insurance\\Insurance.UI\\Insurance.UI.csproj",
-        "packagesPath": "C:\\Users\\2438789\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2438789\\source\\repos\\Insurance\\Insurance.UI\\obj\\",
+        "projectPath": "C:\\Users\\2438801\\Downloads\\Project\\Calculator-Poc\\Insurance.UI\\Insurance.UI.csproj",
+        "packagesPath": "C:\\Users\\2438801\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2438801\\Downloads\\Project\\Calculator-Poc\\Insurance.UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\2438789\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2438801\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -50,6 +50,24 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

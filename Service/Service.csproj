@@ -15,4 +15,8 @@
     <Folder Include="Identity\obj\Debug\net9.0\staticwebassets\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
+  </ItemGroup>
+
 </Project>

@@ -80,9 +80,14 @@
         </div>
         <div class="col-md-6">
             <div class="card shadow-sm rounded-4 h-100">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">Customer Inquiries</h5>
-                    <p class="card-text text-secondary">Review and respond to recent customer support tickets and messages.</p>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title text-primary">System Reports</h5>
+                        <p class="card-text text-secondary mb-4">Generate comprehensive performance analytics and detailed reports on policy, claims, and customer data to gain valuable business insights.</p>
+                    </div>
+                    <a href="@Url.Action("Reports", "Admin")" class="btn btn-outline-info rounded-pill mt-auto">
+                        <i class="fas fa-file-alt me-2"></i> Generate Report
+                    </a>
                 </div>
             </div>
         </div>
