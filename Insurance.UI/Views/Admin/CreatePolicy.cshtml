@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Create New Policy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="fw-bold text-dark">Create New Policy</h2>
+    </div>
+
+    <div class="card p-4 rounded-4 shadow-lg mb-5">
+        <div class="card-header border-0 bg-white d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0 text-primary">Policy Details</h4>
+        </div>
+        <div class="card-body p-0">
+            <form id="createPolicyForm" method="post" action="@Url.Action("Dashboard", "Admin")">
+                <div class="row g-4">
+                    <div class="col-md-6 mb-3">
+                        <label for="policyName" class="form-label text-secondary fw-bold">Policy Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control rounded-pill" id="policyName" name="policyName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="policyType" class="form-label text-secondary fw-bold">Policy Type<span class="text-danger">*</span></label>
+                        <select class="form-select rounded-pill" id="policyType" name="policyType" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Comprehensive">Comprehensive</option>
+                            <option value="Third Party">Third Party</option>
+                            <option value="Collision">Collision</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="customerName" class="form-label text-secondary fw-bold">Customer Name<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control rounded-pill" id="customerName" name="customerName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="customerEmail" class="form-label text-secondary fw-bold">Customer Email<span class="text-danger">*</span></label>
+                        <input type="email" class="form-control rounded-pill" id="customerEmail" name="customerEmail" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="premiumAmount" class="form-label text-secondary fw-bold">Premium Amount ($)<span class="text-danger">*</span></label>
+                        <input type="number" class="form-control rounded-pill" id="premiumAmount" name="premiumAmount" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="policyTerm" class="form-label text-secondary fw-bold">Policy Term (Years)<span class="text-danger">*</span></label>
+                        <input type="number" class="form-control rounded-pill" id="policyTerm" name="policyTerm" required>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="description" class="form-label text-secondary fw-bold">Description</label>
+                        <textarea class="form-control rounded-4" id="description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end col-12">
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 py-2 shadow">Create Policy</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

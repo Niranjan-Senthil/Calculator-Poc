@@ -26,7 +26,10 @@ namespace Insurance.UI.Controllers
 
         public IActionResult Policies() => View();
 
-        public IActionResult AddPolicy() => View();
+        [HttpPost]
+        public IActionResult CreatePolicy(IFormCollection form) => RedirectToAction("Dashboard", "Admin");
+
+        public IActionResult CreatePolicy() => View();
 
         public IActionResult Claims() => View();
 
