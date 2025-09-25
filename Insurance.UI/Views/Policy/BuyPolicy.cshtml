@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Buy Policy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .policy-item {
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none !important;
+    }
+
+        .policy-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-dark mb-3">Choose Your Vehicle Insurance Policy</h2>
+        <p class="text-secondary">
+            Select a policy below to learn more about its coverage and benefits and find the perfect plan for you.
+        </p>
+    </div>
+
+    <div class="accordion" id="policyAccordion">
+
+        <!-- Comprehensive Policy -->
+        <div class="card my-3 policy-item rounded-4 shadow-sm">
+            <div class="card-header bg-primary text-white rounded-top-4" id="headingComprehensive">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-white text-decoration-none w-100 text-start fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComprehensive" aria-expanded="true" aria-controls="collapseComprehensive">
+                        Comprehensive Policy
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseComprehensive" class="collapse" aria-labelledby="headingComprehensive" data-bs-parent="#policyAccordion">
+                <div class="card-body p-4">
+                    <h6 class="card-subtitle mb-2 text-primary fw-bold">Full Coverage for All Damages</h6>
+                    <p class="card-text text-secondary">
+                        A Comprehensive Policy provides the most extensive coverage, protecting your vehicle
+                        against damages from a wide range of incidents, including accidents, theft,
+                        natural disasters, and vandalism. It also includes third-party liability coverage,
+                        ensuring you are protected against damages to other people or their property.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third-Party Policy -->
+        <div class="card my-3 policy-item rounded-4 shadow-sm">
+            <div class="card-header bg-success text-white rounded-top-4" id="headingThirdParty">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-white text-decoration-none w-100 text-start fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirdParty" aria-expanded="false" aria-controls="collapseThirdParty">
+                        Third-Party Policy
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThirdParty" class="collapse" aria-labelledby="headingThirdParty" data-bs-parent="#policyAccordion">
+                <div class="card-body p-4">
+                    <h6 class="card-subtitle mb-2 text-success fw-bold">Mandatory Liability Coverage</h6>
+                    <p class="card-text text-secondary">
+                        A Third-Party Policy is the minimum legal requirement for driving a vehicle.
+                        It covers damages or injuries caused by your vehicle to a third party.
+                        This policy does not cover any damages to your own vehicle. It is
+                        an essential policy for meeting legal obligations and protecting yourself
+                        from financial liabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collision Policy -->
+        <div class="card my-3 policy-item rounded-4 shadow-sm">
+            <div class="card-header bg-info text-dark rounded-top-4" id="headingCollision">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-dark text-decoration-none w-100 text-start fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCollision" aria-expanded="false" aria-controls="collapseCollision">
+                        Collision Policy
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseCollision" class="collapse" aria-labelledby="headingCollision" data-bs-parent="#policyAccordion">
+                <div class="card-body p-4">
+                    <h6 class="card-subtitle mb-2 text-info fw-bold">Covers Vehicle Damage from Accidents</h6>
+                    <p class="card-text text-secondary">
+                        A Collision Policy covers the cost of repairing or replacing your vehicle
+                        after an accident, regardless of who is at fault. It is an ideal addition
+                        to a third-party policy to ensure your own vehicle is protected from
+                        the financial impact of collisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Injury Protection (PIP) Policy -->
+        <div class="card my-3 policy-item rounded-4 shadow-sm">
+            <div class="card-header bg-warning text-dark rounded-top-4" id="headingPIP">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-dark text-decoration-none w-100 text-start fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePIP" aria-expanded="false" aria-controls="collapsePIP">
+                        Personal Injury Protection (PIP) Policy
+                    </button>
+                </h5>
+            </div>
+            <div id="collapsePIP" class="collapse" aria-labelledby="headingPIP" data-bs-parent="#policyAccordion">
+                <div class="card-body p-4">
+                    <h6 class="card-subtitle mb-2 text-warning fw-bold">Medical and Related Expenses Coverage</h6>
+                    <p class="card-text text-secondary">
+                        PIP covers medical expenses and lost wages for you and your passengers
+                        after a vehicle accident, regardless of who is at fault. It can also
+                        cover funeral costs and is a crucial layer of financial protection
+                        for personal well-being.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Uninsured/Underinsured Motorist Policy -->
+        <div class="card my-3 policy-item rounded-4 shadow-sm">
+            <div class="card-header bg-danger text-white rounded-top-4" id="headingUninsured">
+                <h5 class="mb-0">
+                    <button class="btn btn-link text-white text-decoration-none w-100 text-start fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUninsured" aria-expanded="false" aria-controls="collapseUninsured">
+                        Uninsured/Underinsured Motorist Policy
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseUninsured" class="collapse" aria-labelledby="headingUninsured" data-bs-parent="#policyAccordion">
+                <div class="card-body p-4">
+                    <h6 class="card-subtitle mb-2 text-danger fw-bold">Protection from Other Drivers</h6>
+                    <p class="card-text text-secondary">
+                        This policy protects you from the financial burden of an accident
+                        caused by a driver who is either uninsured or whose insurance is
+                        not enough to cover the full cost of damages. It covers vehicle
+                        repairs and medical expenses, providing peace of mind on the road.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
