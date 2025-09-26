@@ -1,32 +1,58 @@
-﻿@{ 
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    ViewData["Title"] = "Reports"; 
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="text-start">
+            <h2 class="fw-bold text-dark">System Reports</h2>
+            <p class="text-secondary mb-0">View, search, and manage all your generated reports from one central location.</p>
+        </div>
+        <a class="btn btn-primary rounded-pill px-4 shadow-sm" href="/Admin/GenerateReport">
+            <i class="fas fa-plus me-2"></i> Generate New Report
+        </a>
+    </div>
 
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    <div class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
+        <input class="form-control border-0 py-2 ps-4" placeholder="Search reports..." style="min-width: 320px;" />
+        <span class="input-group-text bg-white border-0">
+            <i class="fas fa-search text-muted"></i>
+        </span>
+    </div>
 
-} 
-
-<div class="row"> 
-
-    <div class="col-md-3">@Html.Partial("_AdminSidebar")</div> 
-
-    <div class="col-md-9"> 
-
-        <div class="d-flex justify-content-between mb-3">
-  <input class="form-control" placeholder="Search..." style="min-width:320px" />
-  <a class="btn btn-primary" href="/Admin/GenerateReport">Generate Report</a>
+    <div class="card p-4 rounded-4 shadow-lg">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="text-muted fw-normal">Report Type</th>
+                        <th class="text-muted fw-normal">Date Generated</th>
+                        <th class="text-muted fw-normal">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-file-alt me-2 text-info"></i> Claims Report</td>
+                        <td>April 26, 2024</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill">View</button>
+                            <button class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-file-alt me-2 text-success"></i> Policy Report</td>
+                        <td>April 25, 2024</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill">View</button>
+                            <button class="btn btn-sm btn-outline-danger rounded-pill">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No other reports found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
- 
-<div class="card-flat">
-  <table class="table">
-    <thead><tr><th>Report Type</th><th>Date</th></tr></thead>
-    <tbody>
-      <tr><td>Claims Report</td><td>2024-04-26</td></tr>
-      <tr><td>Policy Report</td><td>2024-04-25</td></tr>
-    </tbody>
-  </table>
-</div>
-
-    </div> 
-
-</div> 

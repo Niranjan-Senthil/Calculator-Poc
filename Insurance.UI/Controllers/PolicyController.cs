@@ -10,5 +10,10 @@ namespace Insurance.UI.Controllers
 		{
 			return View();
 		}
-	}
+
+        public IActionResult ViewPolicies()
+        {
+            return View();
+        }
+    }
 }

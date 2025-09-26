@@ -4,20 +4,20 @@
 }
 
 <style>
-    /* New container to ensure background fills the viewport */
-    .login-bg-container {
+    /* New container for the full-page background and centering */
+    .account-bg-container {
         width: 100%;
-        min-height: 100vh; /* Use min-height to ensure it covers the full viewport height */
+        min-height: 100vh;
         background-color: #f0f4f8;
         background-image: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
         display: flex;
-        align-items: center; /* Vertically center the card */
-        justify-content: center; /* Horizontally center the card */
+        align-items: center;
+        justify-content: center;
     }
 
     .account-card {
         max-width: 560px;
-        width: 100%;
+        width: 100%; /* Ensure it's responsive */
         background-color: #f9fafb;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -26,22 +26,8 @@
     }
 
     .form-section {
-        display: none;
         animation: fadeIn 0.5s ease-in-out;
     }
-
-        .form-section.active {
-            display: block;
-        }
-
-    .btn-toggle {
-        border-radius: 50px;
-        transition: all 0.3s ease-in-out;
-    }
-
-        .btn-toggle:hover {
-            transform: translateY(-2px);
-        }
 
     @@keyframes fadeIn {
         from {
@@ -56,48 +42,23 @@
     }
 </style>
 
-<div class="login-bg-container">
+<div class="account-bg-container">
     <div class="account-card">
-        <h4 class="text-center mb-4">PoliSure Account Sign In</h4>
-
-        <div class="d-flex justify-content-center mb-4">
-            <button class="btn btn-outline-primary me-2 btn-toggle" id="signInAdminBtn">Sign In as Admin</button>
-            <button class="btn btn-outline-success btn-toggle" id="signInUserBtn">Sign In as User</button>
-        </div>
-
-        <!-- Admin login form -->
-        <div id="adminLoginForm" class="form-section">
-            <h5 class="text-center mb-3">Admin Sign In</h5>
-            <form id="adminLogin" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Username/Email<span class="text-danger">*</span></label>
-                    <input class="form-control" name="usernameOrEmail" id="adminLoginUserEmail" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Employee Id<span class="text-danger">*</span></label>
-                    <input class="form-control" name="employeeId" required />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password<span class="text-danger">*</span></label>
-                    <input class="form-control" name="password" type="password" required />
-                </div>
-                <button class="btn btn-primary w-100 mt-2">Sign In</button>
-            </form>
-        </div>
+        <h4 class="text-center mb-4">PoliSure User Login</h4>
 
         <!-- User login form -->
         <div id="userLoginForm" class="form-section">
-            <h5 class="text-center mb-3">User Sign In</h5>
-            <form id="userLogin" method="post">
+            <h5 class="text-center mb-3">User Login</h5>
+            <form id="userForm" method="post">
                 <div class="mb-3">
-                    <label class="form-label">Username/Email<span class="text-danger">*</span></label>
-                    <input class="form-control" name="usernameOrEmail" id="userLoginUserEmail" required />
+                    <label class="form-label">Username<span class="text-danger">*</span></label>
+                    <input class="form-control" name="username" required />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password<span class="text-danger">*</span></label>
                     <input class="form-control" name="password" type="password" required />
                 </div>
-                <button class="btn btn-primary w-100 mt-2">Sign In</button>
+                <button class="btn btn-primary w-100 mt-2">Login</button>
             </form>
         </div>
     </div>
@@ -120,54 +81,24 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const signInAdminBtn = document.getElementById('signInAdminBtn');
-        const signInUserBtn = document.getElementById('signInUserBtn');
-        const adminLoginForm = document.getElementById('adminLoginForm');
-        const userLoginForm = document.getElementById('userLoginForm');
         const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
         const statusModalLabel = document.getElementById('statusModalLabel');
         const statusModalBody = document.getElementById('statusModalBody');
-        const adminLoginFormElement = document.getElementById('adminLogin');
-        const userLoginFormElement = document.getElementById('userLogin');
+        const userForm = document.getElementById('userForm');
 
-        function hideAllForms() {
-            document.querySelectorAll('.form-section').forEach(form => {
-                form.classList.remove('active');
-            });
-        }
-
-        signInAdminBtn.addEventListener('click', function() {
-            hideAllForms();
-            adminLoginForm.classList.add('active');
-        });
-
-        signInUserBtn.addEventListener('click', function() {
-            hideAllForms();
-            userLoginForm.classList.add('active');
-        });
-
-        function handleLoginSuccess(username, role) {
-            const dashboardUrl = role === 'admin' ? '@Url.Action("Dashboard", "Admin")' : '@Url.Action("Dashboard", "Customer")';
-            statusModalLabel.textContent = 'Sign In Successful!';
-            statusModalBody.textContent = `Welcome ${username}! You will now be redirected to your dashboard.`;
+        function handleLoginSuccess() {
+            statusModalLabel.textContent = 'Login Successful!';
+            statusModalBody.textContent = 'You have successfully logged in. You will now be redirected.';
             statusModal.show();
             setTimeout(function() {
-                window.location.href = dashboardUrl;
+                // In a real application, you would handle the server-side login
+                window.location.href = '@Url.Action("Dashboard", "User")';
             }, 3000);
         }
 
-        adminLoginFormElement.addEventListener('submit', function(event) {
+        userForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            const username = document.getElementById('adminLoginUserEmail').value;
-            // In a real application, you would perform backend validation and get the role
-            handleLoginSuccess(username, 'admin');
-        });
-
-        userLoginFormElement.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('userLoginUserEmail').value;
-            // In a real application, you would perform backend validation and get the role
-            handleLoginSuccess(username, 'user');
+            handleLoginSuccess();
         });
     });
 </script>

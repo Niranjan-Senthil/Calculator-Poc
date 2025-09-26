@@ -77,62 +77,8 @@
     <div class="account-card">
         <h4 class="text-center mb-4">Create Your PoliSure Account</h4>
 
-        <div class="d-flex justify-content-center mb-4">
-            <button class="btn btn-outline-primary me-2 btn-toggle" id="signUpAdminBtn">Register as Admin</button>
-            <button class="btn btn-outline-success btn-toggle" id="signUpUserBtn">Register as User</button>
-        </div>
-
-        <!-- Admin registration form -->
-        <div id="adminRegistrationForm" class="form-section">
-            <h5 class="text-center mb-3">Admin Registration</h5>
-            <form id="adminForm" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Name<span class="text-danger">*</span></label>
-                    <input class="form-control" name="name" required />
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Username<span class="text-danger">*</span></label>
-                        <input class="form-control" name="username" required />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Employee Id<span class="text-danger">*</span></label>
-                        <input class="form-control" name="employeeId" required />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Email<span class="text-danger">*</span></label>
-                        <input class="form-control" name="email" type="email" required />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Mobile<span class="text-danger">*</span></label>
-                        <input class="form-control" name="mobile" type="tel" required />
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password<span class="text-danger">*</span></label>
-                    <input class="form-control" name="password" id="adminPasswordInput" type="password" required />
-                    <div id="adminPasswordRequirements" class="password-requirements">
-                        <ul class="list-unstyled">
-                            <li id="adminLengthReq">8 characters minimum</li>
-                            <li id="adminUppercaseReq">1 uppercase letter</li>
-                            <li id="adminLowercaseReq">1 lowercase letter</li>
-                            <li id="adminNumberReq">1 number</li>
-                            <li id="adminSpecialCharReq">1 special character</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
-                    <input class="form-control" name="confirmPassword" type="password" required />
-                </div>
-                <button class="btn btn-primary w-100 mt-2">Register</button>
-            </form>
-        </div>
-
         <!-- User registration form -->
-        <div id="userRegistrationForm" class="form-section">
+        <div id="userRegistrationForm" class="form-section active">
             <h5 class="text-center mb-3">User Registration</h5>
             <form id="userForm" method="post">
                 <div class="mb-3">
@@ -154,10 +100,7 @@
                         <label class="form-label">Mobile<span class="text-danger">*</span></label>
                         <input class="form-control" name="mobile" type="tel" required />
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
-                        <input class="form-control" name="dob" type="date" required />
-                    </div>
+                    
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Vehicle Number<span class="text-danger">*</span></label>
@@ -203,35 +146,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const signUpAdminBtn = document.getElementById('signUpAdminBtn');
-        const signUpUserBtn = document.getElementById('signUpUserBtn');
-        const adminRegistrationForm = document.getElementById('adminRegistrationForm');
-        const userRegistrationForm = document.getElementById('userRegistrationForm');
-        const adminPasswordInput = document.getElementById('adminPasswordInput');
-        const adminPasswordRequirements = document.getElementById('adminPasswordRequirements');
         const userPasswordInput = document.getElementById('userPasswordInput');
         const userPasswordRequirements = document.getElementById('userPasswordRequirements');
         const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
         const statusModalLabel = document.getElementById('statusModalLabel');
         const statusModalBody = document.getElementById('statusModalBody');
-        const adminForm = document.getElementById('adminForm');
         const userForm = document.getElementById('userForm');
-
-        function hideAllForms() {
-            document.querySelectorAll('.form-section').forEach(form => {
-                form.classList.remove('active');
-            });
-        }
-
-        signUpAdminBtn.addEventListener('click', function() {
-            hideAllForms();
-            adminRegistrationForm.classList.add('active');
-        });
-
-        signUpUserBtn.addEventListener('click', function() {
-            hideAllForms();
-            userRegistrationForm.classList.add('active');
-        });
 
         function validatePassword(passwordInput, requirementsList) {
             const value = passwordInput.value;
@@ -247,18 +167,6 @@
             /[0-9]/.test(value) ? numberReq.classList.add('valid') : numberReq.classList.remove('valid');
             /[!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value) ? specialCharReq.classList.add('valid') : specialCharReq.classList.remove('valid');
         }
-
-        adminPasswordInput.addEventListener('focus', function() {
-            adminPasswordRequirements.style.display = 'block';
-        });
-        adminPasswordInput.addEventListener('blur', function() {
-            if (this.value === '') {
-                adminPasswordRequirements.style.display = 'none';
-            }
-        });
-        adminPasswordInput.addEventListener('keyup', function() {
-            validatePassword(adminPasswordInput, adminPasswordRequirements);
-        });
 
         userPasswordInput.addEventListener('focus', function() {
             userPasswordRequirements.style.display = 'block';
@@ -281,11 +189,6 @@
                 window.location.href = '@Url.Action("Login", "Customer")';
             }, 3000);
         }
-
-        adminForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleRegistrationSuccess();
-        });
 
         userForm.addEventListener('submit', function(event) {
             event.preventDefault();
